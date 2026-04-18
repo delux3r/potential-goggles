@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebron Molla - Certificate</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top, #2d5a45 0%, #1b3a2b 45%, #0f2417 100%);
+            color: #f3f6f4;
+            font-family: Inter, system-ui, sans-serif;
+        }
+        img {
+            max-width: 92vw;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.35s ease, box-shadow 0.35s ease;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 20px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+            background: #10261b;
+        }
+        img.glow {
+            transform: scale(1.02);
+            box-shadow: 0 30px 100px rgba(51, 230, 190, 0.45);
+        }
+        #message {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            color: rgba(243, 246, 244, 0.86);
+            text-align: center;
+            max-width: 92vw;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body>
+    <img id="certificate" src="Screenshot 2026-04-18 112504.png" alt="Certificate for Kebron Molla from Geez Tech Security Tester v2 showing successful completion of training, signature from Nathan Hailu CEO and Instructor, certified tester stamp, QR code, and cyber security themed icons on a dark green modern background">
+    <div id="message">Click the certificate to reveal a glow.</div>
+    <script>
+        const cert = document.getElementById('certificate');
+        const message = document.getElementById('message');
+
+        cert.addEventListener('load', () => {
+            cert.style.opacity = '1';
+            message.textContent = 'Certificate loaded successfully.';
+        });
+
+        cert.addEventListener('error', () => {
+            message.textContent = 'Unable to load the certificate image.';
+            message.style.color = '#f19c79';
+        });
+
+        cert.addEventListener('click', () => {
+            cert.classList.toggle('glow');
+            message.textContent = cert.classList.contains('glow')
+                ? 'Glow mode activated. Click again to reset.'
+                : 'Click the certificate to reveal a glow.';
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'g' || event.key === 'G') {
+                cert.classList.toggle('glow');
+                message.textContent = cert.classList.contains('glow')
+                    ? 'Glow toggled by keyboard.'
+                    : 'Glow toggled off.';
+            }
+        });
+    </script>
+</body>
+</html>
